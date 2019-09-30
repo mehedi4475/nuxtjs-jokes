@@ -41,38 +41,11 @@
     },
 
     async created(){
-      const config = {
-        headers: {
-          Accept: "application/json"
-        }
-      };
-
-      try{
-        const res = await axios.post("https://nodejs-practice-252711.appspot.com", config);
-        this.jokes = res.data.results
-      }
-      catch(err){
-        console.log(err)
-      }
-
+      
     },
 
     methods: {
-      async searchText(text){
-        const config = {
-          headers: {
-            Accept: "application/json"
-          }
-        };
-
-        await axios.get('https://nodejs-practice-252711.appspot.com/' + text, config)
-        .then(res => {
-          this.urls = res.data[0].urls
-        })
-        .catch(err => {
-          console.log(err);
-        })
-      },
+      
       async submitUrl(){
         const config = {
           headers: {

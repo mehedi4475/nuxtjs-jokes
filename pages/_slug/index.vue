@@ -1,12 +1,20 @@
 <template>
   <div class="urls-area">  
- 
 
-    <h1>{{ urlId }}</h1>
+    <input type="text" id="txt">
 
     <ul>
       <li v-for="url in urls"><a target="_blank" rel="nofollow" :href="url">{{ url }}</a></li>
     </ul>
+
+
+    <form @submit.prevent="unlockTime">
+      
+      <input type="submit" class="shortme" value="Unlock!">
+      
+    </form>
+
+
   </div>
 </template>
 
@@ -24,15 +32,20 @@
     data(){
 
       return{
-        jokes: [],
-        urls: [],
-        newUrl:"",
-        urlId: ""
+        urls: []
       }
     },
 
     async created(){
-      const config = {
+      
+
+    },
+
+    methods: {
+      
+      async unlockUrl(){
+
+        const config = {
           headers: {
             Accept: "application/json"
           }
@@ -47,6 +60,17 @@
         .catch(err => {
           console.log(err);
         })
+
+      },
+
+      unlockTime(){
+        setTimeout(this.unlockUrl, 3000); 
+        var x = document.getElementById("txt");
+        setTimeout(function(){ x.value="1 seconds" }, 1000)
+        setTimeout(function(){ x.value="2 seconds" }, 2000)
+        setTimeout(function(){ x.value="3 seconds" }, 3000)
+        
+      }
 
     },
 
