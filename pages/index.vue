@@ -3,12 +3,12 @@
    
     <!--<SearchJoke v-on:search-text="searchText" />-->
     <form @submit.prevent="submitUrl">
-      <textarea rows="15" class="urls-textarea"  type="text" v-model="newUrl" placeholder="Search Jokes..."></textarea>
+      <textarea rows="15" class="urls-textarea"  type="text" v-model="newUrl" placeholder="Paste your URL's..."></textarea>
       <input type="submit" class="shortme" value="Short Me!">
       
     </form>
 
-    <h1>{{ urlId }}</h1>
+    <h1><a v-if="urlId" target="_blank" :href="urlId">http://localhost:3000/{{ urlId }}</a></h1>
 
     <ul>
       <li v-for="url in urls"><a :href="url">{{ url }}</a></li>

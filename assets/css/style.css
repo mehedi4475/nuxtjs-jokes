@@ -1,5 +1,9 @@
-.urls-area{
-	margin: 10px 0px;
+body{
+	margin:50px 0px;
+}
+
+h1.logo-text{
+	display: block;
 }
 
 .urls-textarea{
@@ -17,4 +21,36 @@ input.shortme{
 input.shortme:hover{
 	cursor: pointer;
 	color:gray;
+}
+
+.header{
+	background-color:gray;
+	display: block;
+	min-height: 150px;
+	margin-bottom: 30px;
+}
+
+.header h1{
+	display: block;
+	color: white;
+	margin: 40px 20px;
+}
+
+.header ul{
+}
+
+.header ul li{
+	display: inline-block;	
+
+}
+
+.header ul li a{
+	margin: 15px 20px;
+	color: white;
+	text-decoration: none;
+}
+
+.header ul li a:hover{
+	color:black;
+
 }
