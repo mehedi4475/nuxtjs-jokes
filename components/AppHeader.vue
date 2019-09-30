@@ -1,9 +1,9 @@
 <template>
 	<header class="header">
-		<h1>Dad Jokes</h1>
+		<h1>URL Shortner</h1>
 		<ul>
 			<li><nuxt-link to="/">Home</nuxt-link></li>
-			<li><nuxt-link to="/jokes">Jokes</nuxt-link></li>
+			<!-- <li><nuxt-link to="/jokes">Jokes</nuxt-link></li> -->
 			<li><nuxt-link to="/about">About Us</nuxt-link></li>
 			<li><nuxt-link to="/contact">Contact Us</nuxt-link></li>
 		</ul>

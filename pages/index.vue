@@ -1,25 +1,104 @@
 <template>
-  <div class="container">
-    <div>
-  
-      <h1>Hello World</h1>
+  <div class="urls-area">
    
-    
-    </div>
+    <!--<SearchJoke v-on:search-text="searchText" />-->
+    <form @submit.prevent="submitUrl">
+      <textarea rows="15" class="urls-textarea"  type="text" v-model="newUrl" placeholder="Search Jokes..."></textarea>
+      <input type="submit" class="shortme" value="Short Me!">
+      
+    </form>
+
+    <h1>{{ urlId }}</h1>
+
+    <ul>
+      <li v-for="url in urls"><a :href="url">{{ url }}</a></li>
+    </ul>
   </div>
 </template>
 
 <script>
 
-export default {
+  import axios from 'axios';
+  import Url from '../components/Url'
+  import SearchJoke from '../components/SingleUrl'
 
-  head(){
-    return{
-      title: 'Welcome to Jokes'
+  export default{    
+
+      components: {
+      Url,
+      SearchJoke
+    },
+
+
+    data(){
+
+      return{
+        jokes: [],
+        urls: [],
+        newUrl:"",
+        urlId: ""
+      }
+    },
+
+    async created(){
+      const config = {
+        headers: {
+          Accept: "application/json"
+        }
+      };
+
+      try{
+        const res = await axios.post("https://nodejs-practice-252711.appspot.com", config);
+        this.jokes = res.data.results
+      }
+      catch(err){
+        console.log(err)
+      }
+
+    },
+
+    methods: {
+      async searchText(text){
+        const config = {
+          headers: {
+            Accept: "application/json"
+          }
+        };
+
+        await axios.get('https://nodejs-practice-252711.appspot.com/' + text, config)
+        .then(res => {
+          this.urls = res.data[0].urls
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      },
+      async submitUrl(){
+        const config = {
+          headers: {
+            Accept: "application/json"
+          }
+        };
+
+        await axios.post('https://nodejs-practice-252711.appspot.com/', {
+          "urls": this.newUrl
+        }, config)
+        .then(res => {
+          this.urlId = res.data._id,
+          this.newUrl = ""
+        })
+        .catch(err => {
+          console.log(err);
+        })
+      }
+    },
+
+    head(){
+      return{
+        title: 'All Jokes'
+      }
     }
   }
-  
-}
 </script>
 
 <style>
